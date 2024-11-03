@@ -1,14 +1,14 @@
-import { Montserrat } from "next/font/google";
+import { Poppins } from "next/font/google"; 
 import "./globals.css";
 import Header from "@/components/Header";
 import PageTransition from "@/components/PageTransition";
 import Footer from "@/components/Footer";
 
-
-const montserratFont = Montserrat({
+// Initialize Poppins font
+const poppinsFont = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
-  variable: "--font-montserrat",
+  variable: "--font-poppins",
 });
 
 export const metadata = {
@@ -19,10 +19,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={montserratFont.variable}>
+      <body className={poppinsFont.variable}>
         <Header/>
         <PageTransition>
-        {children}
+          {children}
         </PageTransition>
         <Footer/>
       </body>

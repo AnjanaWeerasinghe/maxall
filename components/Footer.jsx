@@ -13,7 +13,7 @@ const links = [
 const Footer = () => {
   return (
     <footer className="bg-[#134611] py-10 text-white">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center md:items-start space-y-8 md:space-y-0 px-6">
+      <div className="container mx auto flex flex-col md:flex-row justify-between items-center md:items-start space-y-8 md:space-y-0 px-6">
 
         {/* Logo Section */}
         <div className="flex-shrink-0 mb-4 md:mb-0 text-center md:text-left">

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image"; 
-import logo from "../assets/logo.jpeg"; 
+import logo from "../assets/Maxol logo without bg.png"; 
 import Nav from "./Nav";
 import MobileNav from "./MobileNav";
 

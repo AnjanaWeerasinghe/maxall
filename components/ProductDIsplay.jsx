@@ -1,54 +1,72 @@
-import Image from 'next/image';
-import Link from "next/link";
-import cocoBrick from "../assets/cocobrik.webp"; 
-import cocoBlock from "../assets/cocoblock.webp"
-import cocoBag from "../assets/cocobag.webp"
+"use client"; 
+import React, { useState } from "react";
 
-const products = [
-  {
-    name: "Coco Brick",
-    imgSrc: cocoBrick, 
-  },
-  {
-    name: "Coco Block",
-    imgSrc: cocoBlock,
-  },
-  {
-    name: "Coco Bag",
-    imgSrc: cocoBag,
-  },
+const images = [
+  "/assets/herbaltea.webp", 
+  "/assets/cocobrik.webp",
 ];
 
-export default function ProductDisplay() {
+const Slider = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
   return (
-    <section className="product-display">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold">Cocopeat Products</h2>
-        <p className="text-gray-500 mt-2">
-          Enhance your gardening with eco-friendly, water-retaining, and pest-resistant products. Grow green!
-        </p>
-      </div>
-      <div className="flex justify-center space-x-8">
-        {products.map((product, index) => (
-          <div key={index} className="product-item text-center">
-            <Image
-              src={product.imgSrc}
-              alt={product.name}
-              width={200}
-              height={200}
-              className="object-cover rounded-3xl"
+    <div className="relative w-full max-w-xl mx-auto overflow-hidden">
+      {/* Slide Container */}
+      <div
+        className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {images.map((image, index) => (
+          <div key={index} className="min-w-full">
+            <img
+              src={image}
+              alt={`Slide ${index + 1}`}
+              className="object-cover w-full h-64"
             />
-            <h3 className="mt-4 text-lg font-medium">{product.name}</h3>
           </div>
         ))}
       </div>
-      <div className="flex justify-center mt-8">
-        <Link href="/cocopeat">
-          <button className="flexen rounded-full border border-customGreen px-6 py-2 font-medium hover:bg-customBlue hover:text-white">
-            See More
-          </button>
-        </Link>
+
+      {/* Previous Button */}
+      <button
+        onClick={prevSlide}
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+      >
+        ❮
+      </button>
+
+      {/* Next Button */}
+      <button
+        onClick={nextSlide}
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+      >
+        ❯
+      </button>
+
+      {/* Dots Indicator */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-3 h-3 rounded-full ${
+              currentIndex === index ? "bg-gray-800" : "bg-gray-400"
+            }`}
+          ></button>
+        ))}
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default Slider;

@@ -71,9 +71,7 @@ export default function Home() {
       <div className="w-full flex justify-center items-center mt-[50px] mb-[50px]">
         <ProductDisplay />
       </div>
-      <div className="w-full flex justify-center items-center  mb-[50px]">
-        <HorticultureProduct />
-      </div>
+      
     </div>
   );
 }

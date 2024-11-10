@@ -32,12 +32,7 @@ const Gallery = () => {
       </div>
       {visibleImages < images.length && (
         <div className="flex justify-center mt-4">
-          <button
-            onClick={loadMore}
-            className="flex rounded-full border border-customGreen mt-4 px-6 py-2 font-medium hover:bg-customBlue hover:text-white mx-auto md:mx-00"
-          >
-            Load More
-          </button>
+       
         </div>
       )}
     </div>

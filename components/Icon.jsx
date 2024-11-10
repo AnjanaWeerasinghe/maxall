@@ -1,5 +1,5 @@
-import { FaLeaf, FaRecycle, FaShieldAlt } from 'react-icons/fa';
-import { GiCoconuts } from 'react-icons/gi'; 
+import { FaLeaf, FaRecycle, FaShieldAlt } from "react-icons/fa";
+import { GiCoconuts } from "react-icons/gi";
 
 const IconSection = () => {
   const iconItems = [
@@ -22,13 +22,18 @@ const IconSection = () => {
   ];
 
   return (
-    <div className="flex justify-center gap-8">
+    <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 mt-6">
       {iconItems.map((item, index) => (
-        <div key={index} className="flex flex-col items-center text-center">
-          <div className="p-4 rounded-full bg-customYellow flex items-center ">
+        <div
+          key={index}
+          className="flex flex-col items-center text-center w-32 sm:w-36 md:w-40"
+        >
+          <div className="p-4 rounded-full bg-customYellow flex items-center">
             {item.icon}
           </div>
-          <p className="text-lg font-semibold mt-2">{item.label}</p>
+          <p className="text-sm sm:text-base md:text-lg font-semibold mt-2">
+            {item.label}
+          </p>
         </div>
       ))}
     </div>

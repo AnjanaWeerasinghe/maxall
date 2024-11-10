@@ -3,6 +3,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import PageTransition from "@/components/PageTransition";
 import Footer from "@/components/Footer";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 // Initialize Poppins font
 const poppinsFont = Poppins({

@@ -44,12 +44,22 @@ export default function ContactUs() {
         {/* Left Side: General Information */}
         <div className="w-full xl:w-1/3 p-4 rounded-lg ">
           <h2 className="text-lg font-semibold mb-4">General Info</h2>
+          <p className="mt-4">
+          Registered Office :</p>
           <h3 className="text-lg text-gray-700">Maxol (Private) Limited</h3>
           <p className='text-gray-700'>
-            No. 75/14, D.L. Pathirage Mawatha<br />
-            Gangodawila, Nugegoda (10250)<br />
+            No. 75/14, D.L. Pathirage Mawatha,<br />
+            Gangodawila, Nugegoda (10250),<br />
             Sri Lanka
           </p>
+          <p className="mt-4">
+          Operational Office :</p>
+          <p className='text-gray-700'>
+  66/3/3, Kirimetiyagara, <br />
+  Kadawatha (11850),<br />
+  Sri Lanka
+</p>
+
           <div className="mt-4 flex space-x-2">
             <FaFacebook className="text-black" size={24} />
             <FaInstagram className="text-black" size={24} />

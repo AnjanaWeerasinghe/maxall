@@ -1,41 +1,71 @@
 "use client";
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 
-export default function ContactUs() {
+const ContactUs = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    subject: '',
-    email: '',
-    phone: '',
-    message: '',
+    name: "",
+    subject: "",
+    email: "",
+    phone: "",
+    message: ""
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const form = useRef();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
-        alert('Message sent successfully!');
-        setFormData({ name: '', subject: '', email: '', phone: '', message: '' });
-      } else {
-        alert('Failed to send message.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
+  const sendEmail = (e) => {
+    e.preventDefault(); // Prevent default form submission
+    setSuccess("");
+    if (!formData.email) {
+      setError("Please enter your email");
+      return;
     }
+    if (!formData.message) {
+      setError("Please enter your message");
+      return;
+    }
+
+    const templateParams = {
+      from_name: formData.name,
+      to_name: "Maxol",
+      subject: formData.subject,
+      message: formData.message,
+      email: formData.email,
+      phone: formData.phone,
+    };
+
+    setError("");
+    setIsLoading(true);
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? "",
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? "",
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID
+      )
+      .then(
+        (response) => {
+          setFormData({ name: "", subject: "", email: "", phone: "", message: "" });
+          setIsLoading(false);
+          setSuccess("Your message has been sent successfully");
+        },
+        (error) => {
+          setError("An error occurred. Please try again.");
+          console.error(error);
+          setIsLoading(false);
+        }
+      );
   };
+  
+
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center  ">
@@ -59,7 +89,6 @@ export default function ContactUs() {
   Kadawatha (11850),<br />
   Sri Lanka
 </p>
-
           <div className="mt-4 flex space-x-2">
             <FaFacebook className="text-black" size={24} />
             <FaInstagram className="text-black" size={24} />
@@ -76,7 +105,8 @@ export default function ContactUs() {
         {/* Right Side: Contact Form */}
         <div className="w-full xl:w-2/3 p-4  rounded-lg">
           <h1 className="text-2xl font-bold mb-6 text-center ">Get in touch with Us</h1>
-          <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md mx-auto">
+          <form onSubmit={sendEmail} ref={form} className="space-y-4 w-full max-w-md mx-auto">
+
             <div>
               <label className="block text-gray-600 font-semibold mb-1">Name</label>
               <input
@@ -84,7 +114,6 @@ export default function ContactUs() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                required
                 className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -133,13 +162,18 @@ export default function ContactUs() {
             </div>
             <button
               type="submit"
+              disabled={isLoading}
+
               className="flex rounded-full border border-customGreen mt-4 px-6 py-2 font-medium hover:bg-customBlue hover:text-white mx-auto md:mx-0"
             >
-              Send Us
+              {isLoading? "Sending...": "Send Us"}
+
             </button>
           </form>
+          {error && <p className="text-red-500 mt-4">{error}</p>}
+          {success && <p className="text-green-500 mt-4">{success}</p>}
         </div>
-      </section>
+      </section>"
 
       {/* Bottom Section: Google Map */}
       <div className="w-full mt-8">
@@ -153,4 +187,8 @@ export default function ContactUs() {
       </div>
     </div>
   );
+ 
 }
+
+export default ContactUs;
+

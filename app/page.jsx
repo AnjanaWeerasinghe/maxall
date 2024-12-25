@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import productImage from '../assets/webbanner.png';
-import agriImage from '../assets/agri.webp';
+import agriImage from '../assets/DSC_5711 copy.jpg';
 import IconSection from '@/components/Icon';
 import ProductDisplay from '@/components/ProductDisplay';
 import Link from 'next/link';

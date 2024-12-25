@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
-import MissionImage from '../../assets/missionimage2.jpg';
-import vissionimage from '../../assets/vissionimage1.jpg';
+import MissionImage from '../../assets/DSC_5570 copy.jpg';
+import vissionimage from '../../assets/DSC_5623 copy.jpg';
 import mainimage from '../../assets/mainimage.png';
 import cocopeatlogo from '../../assets/Maxnature logo without bg.png';
-import brandimage from '../../assets/Brand.webp';
+import brandimage from '../../assets/DSC_5730 copy.jpg';
 
 const Aboutus = () => {
   return (

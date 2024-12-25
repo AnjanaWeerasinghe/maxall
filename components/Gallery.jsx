@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import product from "@/assets/cocobag.webp";
+import product from "@/assets/DSC_5565 copy.jpg";
 
 const images = Array(9).fill(product); // Creates an array with 9 identical entries of `product`
 
